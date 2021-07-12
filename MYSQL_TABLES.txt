@@ -1,0 +1,31 @@
+------------------Recursos Humanos-----------------------------
+CREATE TABLE pessoas(
+ID int not null AUTO_INCREMENT,
+    Nome varchar(255) not null,
+    Idade int not null,
+    tipo ENUM('aluno', 'cozinheiro', 'instrutor', 'monitor', 'professor', 'servente'),
+    primary key(ID)
+);
+
+-------------------------------------------------------------------
+
+-----------------------------Recursos Materiais--------------------
+
+CREATE TABLE materiais(
+    ID int not null AUTO_INCREMENT,
+    Nome varchar(255) not null,
+    Quantidade int not null,
+    tipo ENUM('didatico', 'escolar', 'limpeza'),
+    primary key(ID)
+);
+
+CREATE TABLE alocados(
+	ID_loc int not null AUTO_INCREMENT,
+	ID_mat int DEFAULT NULL,
+	Nome varchar(255) not null,
+	Quantidade int not null,
+	tipo ENUM('didatico', 'escolar', 'limpeza'),
+	humano ENUM('aluno', 'cozinheiro', 'instrutor', 'monitor', 'professor', 'servente'),
+	primary key(ID_loc),
+	FOREIGN KEY('ID_mat') REFERENCES 'materiais'('ID')
+);
